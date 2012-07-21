@@ -30,6 +30,11 @@ set backspace=indent,eol,start
 
 " Active la coloration syntaxique
 syntax enable
+" Active les comportements specifiques aux types de fichiers comme
+" la syntaxe et l'indentation
+filetype on
+filetype plugin on
+filetype indent on
 
 " Utilise la version sombre de Solarized
 set background=dark
