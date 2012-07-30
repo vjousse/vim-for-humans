@@ -2,6 +2,9 @@
 " Annule la compatibilte avec l'ancetre Vi : totalement indispensable
 set nocompatible
 
+" Activation de pathogen
+call pathogen#infect()
+
 " -- Affichage
 set title                 " Mets a jour le titre de votre fenetre ou de
                           " votre terminal
