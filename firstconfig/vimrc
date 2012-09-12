@@ -1,9 +1,9 @@
 " VIM Configuration - Vincent Jousse
-" Annule la compatibilte avec l'ancetre Vi : totalement indispensable
+" Annule la compatibilite avec l'ancetre Vi : totalement indispensable
 set nocompatible
 
 " -- Affichage
-set title                 " Mets a jour le titre de votre fenetre ou de
+set title                 " Met a jour le titre de votre fenetre ou de
                           " votre terminal
 set number                " Affiche le numero des lignes
 set ruler                 " Affiche la position actuelle du curseur
