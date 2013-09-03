@@ -12,6 +12,8 @@ set wrap                  " Wrap lines when they are too long
 set scrolloff=3           " Display at least 3 lines around you cursor
                           " (for scrolling)
 
+set guioptions=T          " Enable the toolbar
+
 " -- Search
 set ignorecase            " Ignore case when searching
 set smartcase             " If there is an uppercase in your search term
@@ -29,3 +31,4 @@ set backspace=indent,eol,start
 " Hide buffer (file) instead of abandoning when switching
 " to another buffer
 set hidden
+
