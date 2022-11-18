@@ -40,8 +40,9 @@ filetype on
 filetype plugin on
 filetype indent on
 
-" Use the dark version of Solarized
+" Use the dark version of Solarized and force 256 colors mode for WSL
 set background=dark
+let g:solarized_termcolors=256
 colorscheme solarized
 
 " Change the font

@@ -42,8 +42,10 @@ filetype on
 filetype plugin on
 filetype indent on
 
-" Utilise la version sombre de Solarized
+" Utilise la version sombre de Solarized en forçant la version 256 couleurs
+" pour la comptabilité avec WSL
 set background=dark
+let g:solarized_termcolors=256
 colorscheme solarized
 
 " Change la police
