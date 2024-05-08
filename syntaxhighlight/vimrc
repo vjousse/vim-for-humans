@@ -39,11 +39,10 @@ filetype on
 filetype plugin on
 filetype indent on
 
-" Utilise la version sombre de Solarized en forçant la version 256 couleurs
-" pour la comptabilité avec WSL
-set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
+" Active les couleurs 24-bits dans le terminal
+set termguicolors
+" Utilise la déclinaison mocha du thème catppuccin
+colorscheme catppuccin_mocha
 
 " Change la police
 set guifont=DejaVu\ Sans\ Mono\ 10
