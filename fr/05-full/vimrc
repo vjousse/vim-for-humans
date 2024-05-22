@@ -2,8 +2,31 @@
 " Annule la compatibilite avec l'ancetre Vi : totalement indispensable
 set nocompatible
 
-" Activation de pathogen
-call pathogen#infect()
+" Activation de vim-plug
+call plug#begin()
+
+" Utilisation de , comme touche <Leader>
+let mapleader = ","
+
+" Nous mettrons nos plugins ici
+
+" Installation de solarized
+Plug 'ericbn/vim-solarized'
+
+" Installation de vim-fern
+Plug 'lambdalisue/fern.vim'
+
+" Installation de Lusty Explorer
+Plug 'sjbach/lusty'
+
+" Installation de fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
+
+" -- Activation de la souris
+set mouse=a
 
 " -- Affichage
 set title                 " Met a jour le titre de votre fenetre ou de
@@ -42,29 +65,49 @@ filetype on
 filetype plugin on
 filetype indent on
 
-" Utilise la version sombre de Solarized en forçant la version 256 couleurs
-" pour la comptabilité avec WSL
+" Utilise la version sombre de Solarized
 set background=dark
-let g:solarized_termcolors=256
+" Active les couleurs 24-bits dans le terminal
+set termguicolors
 colorscheme solarized
 
 " Change la police
 set guifont=DejaVu\ Sans\ Mono\ 10
 set antialias
 
-" Activation de NERDTree au lancement de vim
-" A decommenter si besoin
-" autocmd vimenter * NERDTree
+" Activation de vim-fern au lancement de vim
+" Et activation de l'ouverture de fichiers via la souris
+augroup FernGroup
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
 
-let mapleader = ","
+  autocmd VimEnter * ++nested Fern . -drawer -stay
+augroup END
 
-" Parametres par defaut pour ack
-let g:ackprg="ack -H --nocolor --nogroup --column"
-" Place un marqueur et cherche
-nmap <leader>j mA:Ack<space>
-" Place un marqueur et cherche le mot sous le curseur
-nmap <leader>ja mA:Ack "<C-r>=expand("<cword>")<cr>"
-nmap <leader>jA mA:Ack "<C-r>=expand("<cWORD>")<cr>"
+function! s:init_fern() abort
+  nmap <buffer> <LeftRelease> <Plug>(fern-action-open-or-expand)
+endfunction
 
-" Utilise 'c comme raccourci pour ctrlp
-let g:ctrlp_map = '<leader>c'
+" Désactivation des touches directionnelles
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+" On attribue ;; à la touche <Esc>
+" Les ; sont rarement utilisés l'un à la suite de l'autre
+:imap ;; <Esc>
+:map ;; <Esc>
+
+
+" -- Mappings FZF
+" On recherche dans les fichiers du répertoire courant
+nmap <silent> <Leader>ff :Files<CR>
+" On recherche dans les buffers ouverts
+nmap <silent> <Leader>fb :Buffers<CR>
+" On recherche dans le contenu des fichiers
+nmap <silent> <Leader>fr :Rg<CR>
