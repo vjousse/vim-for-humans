@@ -2,11 +2,11 @@
 " Annule la compatibilite avec l'ancetre Vi : totalement indispensable
 set nocompatible
 
-" Activation de vim-plug
-call plug#begin()
-
 " Utilisation de , comme touche <Leader>
 let mapleader = ","
+
+" Activation de vim-plug
+call plug#begin()
 
 " Nous mettrons nos plugins ici
 
