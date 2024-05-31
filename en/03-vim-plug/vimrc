@@ -3,6 +3,22 @@
 " to enjoy the features of Vim
 set nocompatible
 
+" Activate vim-plug
+call plug#begin()
+
+" Put your plugins here
+
+" Install solarized
+Plug 'ericbn/vim-solarized'
+
+" Install vim-fern
+Plug 'lambdalisue/fern.vim'
+
+call plug#end()
+
+" -- Activate the mouse
+set mouse=a
+
 " -- Display
 set title                 " Update the title of your window or your terminal
 set number                " Display line numbers
@@ -11,9 +27,7 @@ set wrap                  " Wrap lines when they are too long
 
 set scrolloff=3           " Display at least 3 lines around you cursor
                           " (for scrolling)
-
-set guioptions=T          " Enable the toolbar
-
+                          "
 " -- Search
 set ignorecase            " Ignore case when searching
 set smartcase             " If there is an uppercase in your search term
@@ -42,9 +56,11 @@ filetype indent on
 
 " Use the dark version of Solarized and force 256 colors mode for WSL
 set background=dark
-let g:solarized_termcolors=256
+" Activate 24-bits colors in the terminal
+set termguicolors
 colorscheme solarized
 
 " Change the font
 set guifont=DejaVu\ Sans\ Mono\ 10
 set antialias
+
