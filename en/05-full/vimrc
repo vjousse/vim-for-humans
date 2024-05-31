@@ -1,0 +1,109 @@
+" VIM Configuration - Vincent Jousse
+" Cancel the compatibility with Vi. Essential if you want
+" to enjoy the features of Vim
+set nocompatible
+
+" Use , as the mapleader key
+let mapleader = ","
+
+" Activate vim-plug
+call plug#begin()
+
+" Put your plugins here
+
+" Install solarized
+Plug 'ericbn/vim-solarized'
+
+" Install vim-fern
+Plug 'lambdalisue/fern.vim'
+
+" Install Lusty Explorer
+Plug 'sjbach/lusty'
+
+" Install fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
+
+" -- Activate the mouse
+set mouse=a
+
+" -- Display
+set title                 " Update the title of your window or your terminal
+set number                " Display line numbers
+set ruler                 " Display cursor position
+set wrap                  " Wrap lines when they are too long
+
+set scrolloff=3           " Display at least 3 lines around you cursor
+                          " (for scrolling)
+                          "
+" -- Search
+set ignorecase            " Ignore case when searching
+set smartcase             " If there is an uppercase in your search term
+                          " search case sensitive again
+set incsearch             " Highlight search results when typing
+set hlsearch              " Highlight search results
+
+" -- Beep
+set visualbell            " Prevent Vim from beeping
+set noerrorbells          " Prevent Vim from beeping
+
+" Backspace behaves as expected
+set backspace=indent,eol,start
+
+" Hide buffer (file) instead of abandoning when switching
+" to another buffer
+set hidden
+
+" Enable syntax highlighting
+syntax enable
+
+" Enable file specific behavior like syntax highlighting and indentation
+filetype on
+filetype plugin on
+filetype indent on
+
+" Use the dark version of Solarized and force 256 colors mode for WSL
+set background=dark
+" Activate 24-bits colors in the terminal
+set termguicolors
+colorscheme solarized
+
+" Change the font
+set guifont=DejaVu\ Sans\ Mono\ 10
+set antialias
+
+" Activate vim-fern when starting vim
+augroup FernGroup
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+
+  autocmd VimEnter * ++nested Fern . -drawer -stay
+augroup END
+
+function! s:init_fern() abort
+  nmap <buffer> <LeftRelease> <Plug>(fern-action-open-or-expand)
+endfunction
+
+" Disabling the directional keys
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+" Escape normal mode
+" Press the i 2 times in row
+:imap ii <Esc>
+
+" -- FZF mappings
+" We search the files in the current directory
+nmap <silent> <Leader>ff :Files<CR>
+" Search in open buffers
+nmap <silent> <Leader>fb :Buffers<CR>
+" We search the contents of files
+nmap <silent> <Leader>fr :Rg<CR>
